@@ -3,6 +3,7 @@ from werkzeug.utils import find_modules, import_string
 
 from api_result import ApiResult, ApiException
 from models.db import db
+import views
 
 class ApiFlask(Flask):
     def make_response(self, return_value):
@@ -17,6 +18,7 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
     register_blueprints(app)
     register_error_handlers(app)
+    app.add_url_rule('/', 'home', views.home)
     db.init_app(app)
     with app.app_context():
         db.create_all()

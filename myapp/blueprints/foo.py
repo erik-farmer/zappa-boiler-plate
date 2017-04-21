@@ -6,9 +6,9 @@ from myapp.models.db import db
 from myapp.models.Foos import Foo
 
 
-bp = Blueprint('demo', __name__)
+bp = Blueprint('demo', __name__, url_prefix='/foo')
 
-@bp.route('/foo')
+@bp.route('/')
 def foo():
     # os.environ.get('var')
     new_foo = Foo(name='Potato')
